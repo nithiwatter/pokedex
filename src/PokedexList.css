@@ -1,0 +1,51 @@
+.root {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.grid-container {
+  margin: 20px;
+  margin-top: 100px;
+  display: grid;
+  width: 90%;
+  grid-template-columns: auto auto auto auto;
+  box-sizing: content-box;
+  gap: 10px 5%;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  color: white;
+  font-family: 'Press Start 2P';
+  background-color: #2c3e50;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  z-index: 1;
+}
+
+.nav h1 {
+  padding: 15px;
+}
+
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  background-color: white;
+  opacity: 0.5;
+  position: fixed;
+  z-index: 2;
+}
+
+.nav #top {
+  margin-left: auto;
+  margin-right: 40px;
+  font-size: 30px;
+  cursor: pointer;
+}

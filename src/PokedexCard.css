@@ -1,0 +1,97 @@
+.pokemon-card {
+  width: 100%;
+  margin: 4px;
+  border: 4px solid #2c3e50;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    30deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 40%,
+    #cc0000 40%,
+    #cc0000 100%
+  );
+}
+
+.pokemon-card .btn {
+  font-family: Roboto;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.image-container {
+  border: 2px solid slategrey;
+  margin: 5px;
+  margin-top: 15px;
+  width: 80%;
+  margin-bottom: 0;
+  background-color: #f2f2f2;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.image-container img {
+  display: block;
+  height: 200px;
+  width: 200px;
+  transition: all 1s ease-in;
+}
+
+.pokemon-card-title {
+  width: 100%;
+  padding: 10px;
+
+  margin: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.pokemon-card-title span {
+  color: #34495e;
+  font-family: 'Roboto';
+  font-weight: 700;
+}
+
+.pokemon-card-title p {
+  margin: 0;
+  color: slategrey;
+  font-family: 'Roboto';
+  font-weight: 400;
+}
+
+.pokemon-card-title h4 {
+  font-size: 1rem;
+  margin: 0;
+  color: #2c3e50;
+  font-family: 'Press Start 2P';
+}
+
+.card-shadow {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.card-shadow:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  animation: mover 0.4s ease-in;
+}
+
+@keyframes mover {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
