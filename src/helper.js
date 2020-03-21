@@ -16,4 +16,13 @@ function getPokemonEntries(pokemonEntries) {
   return result;
 }
 
-export { getPokemonEntries };
+function searchPokemon(search, totalPokemons) {
+  let result = totalPokemons.filter(pokemon => {
+    let name = pokemon.pokemonName.toLowerCase();
+    return name.startsWith(search);
+  });
+  console.log(result);
+  return result;
+}
+
+export { getPokemonEntries, searchPokemon };

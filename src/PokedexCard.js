@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './PokedexCard.css';
+import pokeball from './pokeball_PNG8.png';
 const URL =
   'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
 
@@ -18,6 +19,9 @@ class PokedexCard extends Component {
     return (
       <div className='pokemon-card card-shadow'>
         <div className='image-container'>
+          <div className='img-circle-pkdex'>
+            <img src={pokeball}></img>
+          </div>
           <img
             src={image}
             onLoad={this.handleLoad}

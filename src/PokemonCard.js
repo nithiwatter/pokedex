@@ -8,7 +8,7 @@ const TYPE_COLORS = {
   dragon: '755EDF',
   electric: 'FCBC17',
   fairy: 'F4B1F4',
-  fighting: '823551D',
+  fighting: '7D1F1A',
   fire: 'E73B0C',
   flying: 'A3B3F7',
   ghost: '6060B2',
@@ -104,6 +104,7 @@ class PokemonCard extends Component {
     });
     setTimeout(() => this.setState({ loaded: true }), 500);
   }
+
   render() {
     const {
       name,
@@ -118,6 +119,8 @@ class PokemonCard extends Component {
     const display = this.state.loaded ? 'flex' : 'none';
     const displayImg = this.state.imgLoaded ? '1' : '0';
     const color = TYPE_COLORS[types[0]];
+    let statsColor = color;
+    if (types[1]) statsColor = TYPE_COLORS[types[1]];
     return (
       <div className='root2'>
         {!this.state.loaded && <h1>Loading...</h1>}
@@ -145,7 +148,7 @@ class PokemonCard extends Component {
                 <div className='col-12 col-md-9'>
                   <div className='progress mr-4'>
                     <div
-                      className='progress-bar'
+                      className='progress-bar progress-bar-striped'
                       role='progressbar'
                       style={{
                         width: `${Math.floor(100 * (stats.hp / 255))}%`,
@@ -165,7 +168,7 @@ class PokemonCard extends Component {
                 <div className='col-12 col-md-9'>
                   <div className='progress mr-4'>
                     <div
-                      className='progress-bar'
+                      className='progress-bar progress-bar-striped'
                       role='progressbar'
                       style={{
                         width: `${Math.floor(100 * (stats.attack / 255))}%`,
@@ -185,7 +188,7 @@ class PokemonCard extends Component {
                 <div className='col-12 col-md-9'>
                   <div className='progress mr-4'>
                     <div
-                      className='progress-bar'
+                      className='progress-bar progress-bar-striped'
                       role='progressbar'
                       style={{
                         width: `${Math.floor(100 * (stats.defense / 255))}%`,
@@ -205,7 +208,7 @@ class PokemonCard extends Component {
                 <div className='col-12 col-md-9'>
                   <div className='progress mr-4'>
                     <div
-                      className='progress-bar'
+                      className='progress-bar progress-bar-striped'
                       role='progressbar'
                       style={{
                         width: `${Math.floor(100 * (stats.speed / 255))}%`,
@@ -225,7 +228,7 @@ class PokemonCard extends Component {
                 <div className='col-12 col-md-9'>
                   <div className='progress mr-4'>
                     <div
-                      className='progress-bar'
+                      className='progress-bar progress-bar-striped'
                       role='progressbar'
                       style={{
                         width: `${Math.floor(
@@ -247,7 +250,7 @@ class PokemonCard extends Component {
                 <div className='col-12 col-md-9'>
                   <div className='progress mr-4'>
                     <div
-                      className='progress-bar'
+                      className='progress-bar progress-bar-striped'
                       role='progressbar'
                       style={{
                         width: `${Math.floor(
@@ -270,7 +273,16 @@ class PokemonCard extends Component {
                     key={ability}
                     className='col-12 col-md-6 mt-3 d-flex justify-content-center'
                   >
-                    <button className='btn btn-outline-info'>{ability}</button>
+                    <button
+                      className='btn btn-outline-info'
+                      style={{
+                        color: `#${statsColor}`,
+                        borderColor: `#${statsColor}`,
+                        backgroundColor: 'white'
+                      }}
+                    >
+                      {ability}
+                    </button>
                   </div>
                 ))}
               </div>

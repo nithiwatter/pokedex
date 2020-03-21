@@ -30,10 +30,29 @@
   margin-bottom: 0;
   background-color: #f2f2f2;
   border-radius: 12px;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+}
+
+.image-container .img-circle-pkdex {
+  width: 200px;
+  position: absolute;
+  height: 200px;
+  border-radius: 50%;
+  background-color: white;
+  opacity: 0.3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-container .img-circle-pkdex img {
+  display: block;
+  height: 150px;
+  width: 150px;
 }
 
 .image-container img {
@@ -41,6 +60,7 @@
   height: 200px;
   width: 200px;
   transition: all 1s ease-in;
+  z-index: 0;
 }
 
 .pokemon-card-title {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { getPokemonEntries } from './helper';
+import { getPokemonEntries, searchPokemon } from './helper';
 import PokedexCard from './PokedexCard';
 import './PokedexList.css';
 import PokemonCard from './PokemonCard';
@@ -14,11 +14,13 @@ class PokedexList extends Component {
       showMore: false,
       currentId: 0,
       currentEntry: 0,
-      currentRegion: 'Kanto'
+      currentRegion: 'Kanto',
+      currentSearch: ''
     };
     this.changeRegion = this.changeRegion.bind(this);
     this.showMore = this.showMore.bind(this);
     this.goBack = this.goBack.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   async changeRegion(evt) {
@@ -50,25 +52,45 @@ class PokedexList extends Component {
     this.setState({ showMore: false });
   }
 
+  handleSearch(evt) {
+    searchPokemon(evt.target.value, this.state.display);
+    this.setState({ currentSearch: evt.target.value });
+  }
+
   render() {
-    const { display } = this.state;
-    const entries = display.map(pokemon => (
-      <PokedexCard
-        key={pokemon.pokemonId}
-        pokemonId={pokemon.pokemonId}
-        pokemonEntryNumber={pokemon.pokemonEntryNumber}
-        pokemonName={pokemon.pokemonName}
-        currentRegion={this.state.currentRegion}
-        onClick={this.showMore}
-      />
-    ));
+    const { display, currentSearch } = this.state;
+    let entries;
+    if (currentSearch === '') {
+      entries = display.map(pokemon => (
+        <PokedexCard
+          key={pokemon.pokemonId}
+          pokemonId={pokemon.pokemonId}
+          pokemonEntryNumber={pokemon.pokemonEntryNumber}
+          pokemonName={pokemon.pokemonName}
+          currentRegion={this.state.currentRegion}
+          onClick={this.showMore}
+        />
+      ));
+    } else {
+      entries = searchPokemon(currentSearch, display).map(pokemon => (
+        <PokedexCard
+          key={pokemon.pokemonId}
+          pokemonId={pokemon.pokemonId}
+          pokemonEntryNumber={pokemon.pokemonEntryNumber}
+          pokemonName={pokemon.pokemonName}
+          currentRegion={this.state.currentRegion}
+          onClick={this.showMore}
+        />
+      ));
+    }
+
     return (
       <div>
         <div className='nav'>
-          <h1>Pokedex</h1>
+          <h1>React-Pokedex</h1>
           <div className='dropdown ml-2'>
             <button
-              className='btn btn-secondary dropdown-toggle'
+              className='btn btn-secondary dropdown-toggle pk-drop'
               type='button'
               id='dropdownMenuButton'
               data-toggle='dropdown'
@@ -98,6 +120,17 @@ class PokedexList extends Component {
               })}
             </div>
           </div>
+
+          <div className='search-container'>
+            <input
+              type='text'
+              className='form-control search'
+              value={this.state.currentSearch}
+              onChange={this.handleSearch}
+              placeholder='Pokemon Name'
+            />
+          </div>
+
           <i
             className='fa fa-arrow-up'
             id='top'
